@@ -39,9 +39,15 @@ curl -X POST "http://localhost:8000/login" \
 -H "Content-Type: application/x-www-form-urlencoded" \
 -d "username=ivan&password=ivanpassword"
 ```
+Ejemplo de respuesta:
+```bash
+{"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJpdmFuIiwiaWQiOjEsImVtYWlsIjoiaXZhbkBnbWFpbC5jb20iLCJleHAiOjE3NDUxOTE0NDN9.qsYv9SLfvzi9inxHiA1YLJK7UOHxMUMzwy5p0TsAFEk", \
+"token_type":"bearer", \
+"csrf_token":"ppJHXNgLXhx2dzMYWZ1H5sUSx_L90o3XO54TkEKds_Y"}
+```
 
 #### 1.2 /protegido Endpoint
-Ejecutar reemplazando `<jwt-token>` por el token devuelto por el servidor para acceder a endpoints protegidos mediante verificación JWT según esquema Bearer.
+Ejecutar reemplazando `<jwt-token>` por el token devuelto `access_token` para acceder a endpoints protegidos mediante verificación JWT según esquema Bearer.
 ```bash
 curl -X POST "http://localhost:8000/protegido" \
 -H "Authorization: Bearer <jwt-token>"

@@ -39,8 +39,16 @@ curl -X POST "http://localhost:8000/login" \
 -d "username=ivan&password=ivanpassword"
 ```
 
-### /login Endpoint
-Ejecutar con `username`=`ivan` y `password`=`ivanpassword`. Devolverá un token JWT y otro CSRF.
+### /protegido Endpoint
+Ejecutar reemplazando `<jwt-token>` por el token devuelto por el servidor para acceder a endpoints protegidos mediante verificación JWT según esquema Bearer.
 ```bash
-curl -X POST "http://localhost:8000/login" -H "Content-Type: application/x-www-form-urlencoded" -d "username=ivan&password=ivanpassword"
+curl -X POST "http://localhost:8000/protegido" \
+-H "Authorization: Bearer <jwt-token>"
+```
+
+### /protegido Endpoint
+```bash
+curl -X <POST/PUT/DELETE> "http://localhost:8000/<endpoint>" \
+-H "Authorization: Bearer <jwt-token>" \
+-H "X-CSRF-Token: <csrf-token>"
 ```

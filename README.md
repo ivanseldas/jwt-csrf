@@ -1,2 +1,22 @@
 # MTP-prueba-tecnica
-Ejercicio de back
+
+### 1. Autenticación con JWT (JSON Web Token)
+- Endpoint `/login` valida credenciales y devuelve JWT  
+- Token incluye: ID/user, email + expiración (15 min)  
+- Validación automática en headers `Authorization: Bearer <token>`  
+
+### 2. Protección contra CSRF (Cross-Site Request Forgery)  
+- Token CSRF generado en login y enviado en header `X-CSRF-Token`  
+- Validación obligatoria en métodos **POST/PUT/DELETE**  
+- Almacenamiento seguro con expiración y comparación anti-timing  
+
+### 3. Endpoint de Ejemplo `/profile`
+- **GET** seguro con validación JWT (no requiere CSRF)
+- Devuelve: ID, username y email del usuario  
+
+### Instalación
+```bash
+git clone https://github.com/ivanseldas/MTP-prueba-tecnica.git
+cd tu-repositorio
+pip install -r requirements.txt
+```

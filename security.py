@@ -5,13 +5,21 @@ from fastapi.security import OAuth2PasswordBearer
 from fastapi import HTTPException, status, Depends, Request
 from database import get_user
 from schemas import User
+from dotenv import load_dotenv
+import os
 import secrets
 
-# 1. Configuración para validación mediante JWT
+# Carga archivo .env
+load_dotenv()
 
-SECRET_KEY = "Z9r@8Lp#3xT!vF2qE7k$Nw1Gd^Um6HbY0cX&PiA+oSjTzR5L"
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 15
+# Carga las variables de entorno del archivo .env
+SECRET_KEY = os.getenv("SECRET_KEY")
+ALGORITHM = os.getenv("ALGORITHM")
+ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES"))
+CSRF_TOKEN_EXPIRE_MINUTES = int(os.getenv("CSRF_TOKEN_EXPIRE_MINUTES"))
+
+
+# 1. Configuración para validación mediante JWT
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")

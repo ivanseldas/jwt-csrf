@@ -34,7 +34,9 @@ uvicorn app.main:app --reload
 ### /login Endpoint
 Ejecutar con las credenciales de usuario `username`=`ivan` y `password`=`ivanpassword`. Devolverá un token JWT y otro CSRF.
 ```bash
-curl -X POST "http://localhost:8000/login" -H "Content-Type: application/x-www-form-urlencoded" -d "username=ivan&password=ivanpassword"
+curl -X POST "http://localhost:8000/login" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "username=ivan&password=ivanpassword"
 ```
 
 ### /login Endpoint

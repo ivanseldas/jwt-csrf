@@ -31,8 +31,7 @@ cp .env.example .env
 uvicorn app.main:app --reload
 ```
 
-### 1. Autenticación con JWT (JSON Web Token)
-#### 1.1 /login Endpoint
+## /login Endpoint (autenticación con JWT token y CSRF token)
 Ejecutar con las credenciales de usuario `username`=`ivan` y `password`=`ivanpassword`. Devolverá un token JWT y otro CSRF.
 ```bash
 curl -X POST "http://localhost:8000/login" \
@@ -46,14 +45,8 @@ Ejemplo de respuesta:
 "csrf_token":"ppJHXNgLXhx2dzMYWZ1H5sUSx_L90o3XO54TkEKds_Y"}
 ```
 
-#### 1.2 /protegido Endpoint
-Ejecutar reemplazando `<jwt-token>` por el token devuelto `access_token` para acceder a endpoints protegidos mediante verificación JWT según esquema Bearer.
-```bash
-curl -X POST "http://localhost:8000/protegido" \
--H "Authorization: Bearer <jwt-token>"
-```
-### 2. Protección contra CSRF (Cross-Site Request Forgery) 
-#### 2.1 /protegido Endpoint
+## /protegido Endpoint (verificación de JWT Token y CSRF Token)
+Ejecutar reemplazando `<jwt-token>` por el token devuelto `access_token` asi como `<csrf-token>` por `csrf_token` para validar ambos tokens.
 ```bash
 curl -X <POST/PUT/DELETE> "http://localhost:8000/<endpoint>" \
 -H "Authorization: Bearer <jwt-token>" \

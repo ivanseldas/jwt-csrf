@@ -13,9 +13,25 @@
 - **GET** seguro con validación JWT (no requiere CSRF)
 - Devuelve: ID, username y email del usuario  
 
+---
 ### Instalación
 ```bash
 git clone https://github.com/ivanseldas/MTP-prueba-tecnica.git
-cd tu-repositorio
+cd MTP-prueba-tecnica
 pip install -r requirements.txt
+```
+### Configuración
+Crear un archivo `.env` basado en `.env.example`:
+```bash
+cp .env.example .env
+```
+
+### Ejecutar servidor
+```bash
+uvicorn app.main:app --reload
+```
+
+### Probar Endpoints
+```bash
+curl -X POST "http://localhost:8000/login" -H "Content-Type: application/x-www-form-urlencoded" -d "username=ivan&password=ivanpassword"
 ```

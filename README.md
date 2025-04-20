@@ -31,7 +31,14 @@ cp .env.example .env
 uvicorn app.main:app --reload
 ```
 
-### Probar Endpoints
+### /login Endpoint
+Ejecutar con las credenciales de usuario `username`=`ivan` y `password`=`ivanpassword`. Devolverá un token JWT y otro CSRF.
+```bash
+curl -X POST "http://localhost:8000/login" -H "Content-Type: application/x-www-form-urlencoded" -d "username=ivan&password=ivanpassword"
+```
+
+### /login Endpoint
+Ejecutar con `username`=`ivan` y `password`=`ivanpassword`. Devolverá un token JWT y otro CSRF.
 ```bash
 curl -X POST "http://localhost:8000/login" -H "Content-Type: application/x-www-form-urlencoded" -d "username=ivan&password=ivanpassword"
 ```

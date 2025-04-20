@@ -8,7 +8,6 @@
 ### 2. Protección contra CSRF (Cross-Site Request Forgery)  
 - Token CSRF generado en login y enviado en header `X-CSRF-Token`  
 - Validación obligatoria en métodos **POST/PUT/DELETE**  
-- Almacenamiento seguro con expiración y comparación anti-timing  
 
 ### 3. Endpoint de Ejemplo `/profile`
 - **GET** seguro con validación JWT (no requiere CSRF)

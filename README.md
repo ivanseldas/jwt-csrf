@@ -19,7 +19,7 @@
 ├── app/
 │   ├── main.py
 │   ├── security.py      # lógica JWT & CSRF
-│   ├── routers.py       # endpoints
+│   ├── auth_router.py   # endpoints
 │   ├── schemas.py       # modelos pydantic
 │   └── database.py      # base de datos
 ├── .env.example       

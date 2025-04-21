@@ -24,15 +24,18 @@ CSRF_TOKEN_EXPIRE_MINUTES = int(os.getenv("CSRF_TOKEN_EXPIRE_MINUTES"))
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
 
+# Verifica que la contraseña como string y hasheada coinciden
 def verify_password(plain_password: str, hashed_password: str):
     return pwd_context.verify(plain_password, hashed_password)
 
+# Crea un jwt token con la fecha de expiración y la firma secreta
 def create_access_token(data: dict, expires_time: timedelta):
     to_encode = data.copy()
     expire = datetime.now(timezone.utc) + expires_time
     to_encode.update({"exp": expire})
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
+# Comprueba que el token enviado por el cliente es igual al token enviado desde el servidor
 async def get_current_user(token: str = Depends(oauth2_scheme)):
     error_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
@@ -40,8 +43,11 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
         headers={"WWW-Authenticate": "Bearer"},
     )
     try:
+        # Decodifica el token para obtener el contenido del mismo
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        # Obtiene el nombre de usuario del contendio del token decodificado
         username: str = payload.get("sub")
+        # Devuelve el usuario si el usuario de cliente y servidor obtenidos del token jwt coinciden
         if username is None:
             raise error_exception
         user = get_user(username)
@@ -55,7 +61,6 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
 # 2. Funciones para CSRF Token 
 
 CSRF_TOKENS = {}
-CSRF_TOKEN_EXPIRE_MINUTES = 1
 
 def generate_csrf_token() -> str:
     return secrets.token_urlsafe(32)

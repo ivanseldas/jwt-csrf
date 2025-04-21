@@ -22,18 +22,19 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends()):
             headers={"WWW-Authenticate": "Bearer"},
         )
     
-    # Genera JWT token
+    # Genera un JWT token
     access_token = create_access_token(
         data={"sub": user["username"], "id": user["id"], "email": user["email"]},
         expires_time=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     )
     
-    # Genera CSRF Token
+    # Genera un CSRF Token
     csrf_token = generate_csrf_token()
     
-    # Almacena CSRF Token
+    # Almacena el CSRF Token
     store_csrf_token(user["username"], csrf_token)
     
+    # Envia el jwt token, el tipo de autorización y el csrf token
     return {
         "access_token": access_token, 
         "token_type": "bearer",

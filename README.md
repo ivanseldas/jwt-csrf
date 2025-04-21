@@ -13,7 +13,7 @@
 - **GET** seguro con validación JWT (no requiere CSRF)
 - Devuelve: ID, username y email del usuario  
 ---
-### Estructura de carpetas
+# Estructura de carpetas
 ```bash
 .
 ├── app/

@@ -55,8 +55,8 @@
 ---
 # Instalación y configuración
 ```bash
-git clone https://github.com/ivanseldas/MTP-prueba-tecnica.git
-cd MTP-prueba-tecnica
+git clone https://github.com/ivanseldas/jwt-csrf.git
+cd jwt-csrf
 pip install -r requirements.txt
 ```
 Crear un archivo `.env` basado en `.env.example`:

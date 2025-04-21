@@ -28,7 +28,8 @@ cp .env.example .env
 
 ### Ejecutar servidor
 ```bash
-uvicorn app.main:app --reload
+cd app
+uvicorn main:app --reload
 ```
 
 ### /login Endpoint (autenticación con JWT token y CSRF token)
@@ -51,4 +52,15 @@ Ejecutar reemplazando `<jwt-token>` por el token devuelto `access_token` asi com
 curl -X <POST/PUT/DELETE> "http://localhost:8000/<endpoint>" \
 -H "Authorization: Bearer <jwt-token>" \
 -H "X-CSRF-Token: <csrf-token>"
+```
+
+### /profile Endpoint (acceso a recurso protegido)
+Ejecutar reemplazando `<jwt-token>` por el token devuelto `access_token`. En este caso no será necesario validar `csrf_token` ya que la acción realizada es `GET`.
+```bash
+curl -X GET "http://localhost:8000/profile" \
+-H "Authorization: Bearer <jwt-token>" 
+```
+Devolverá la información básica del usuario una vez validado el JWT Token. Ejemplo de respuesta:
+```bash
+{"id":1,"username":"ivan","email":"ivan@gmail.com"}
 ```

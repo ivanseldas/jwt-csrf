@@ -27,7 +27,7 @@
 └── README.md
 ```
 ---
-# Proceso de autenticación
+# Flujo de autenticación
 1. **Login**  
    - El cliente envía credenciales `username` & `password` 
    - Si son válidas:  

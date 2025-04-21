@@ -27,24 +27,25 @@
 └── README.md
 ```
 ---
-### Instalación
+# Instalación
 ```bash
 git clone https://github.com/ivanseldas/MTP-prueba-tecnica.git
 cd MTP-prueba-tecnica
 pip install -r requirements.txt
 ```
-### Configuración
+# Configuración
 Crear un archivo `.env` basado en `.env.example`:
 ```bash
 cp .env.example .env
 ```
 
-### Ejecutar servidor
+# Ejecutar servidor
 ```bash
 cd app
 uvicorn main:app --reload
 ```
 ---
+# Endpoints
 ### /login Endpoint (autenticación con JWT token y CSRF token)
 Ejecutar con las credenciales de usuario `username`=`ivan` y `password`=`ivanpassword`. Devolverá un token JWT y otro CSRF.
 ```bash

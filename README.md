@@ -19,7 +19,7 @@
 ├── app/
 │   ├── main.py
 │   ├── security.py      # lógica JWT & CSRF
-│   ├── routers.py       # endpoints
+│   ├── auth_router.py   # endpoints
 │   ├── schemas.py       # modelos pydantic
 │   └── database.py      # base de datos
 ├── .env.example       
@@ -45,7 +45,7 @@ uvicorn main:app --reload
 ```
 ---
 # Endpoints
-### /login (autenticación con JWT token y CSRF token)
+### `/login` (autenticación con JWT token y CSRF token)
 Ejecutar con las credenciales de usuario `username`=`ivan` y `password`=`ivanpassword`. Devolverá un token JWT y otro CSRF.
 ```bash
 curl -X POST "http://localhost:8000/login" \
@@ -59,7 +59,7 @@ Ejemplo de respuesta:
 "csrf_token":"ppJHXNgLXhx2dzMYWZ1H5sUSx_L90o3XO54TkEKds_Y"}
 ```
 
-### /protegido (verificación de JWT Token y CSRF Token)
+### `/protegido` (verificación de JWT Token y CSRF Token)
 Ejecutar reemplazando `<jwt-token>` por el token devuelto `access_token` asi como `<csrf-token>` por `csrf_token` para validar ambos tokens.
 ```bash
 curl -X <POST/PUT/DELETE> "http://localhost:8000/<endpoint>" \
@@ -67,7 +67,7 @@ curl -X <POST/PUT/DELETE> "http://localhost:8000/<endpoint>" \
 -H "X-CSRF-Token: <csrf-token>"
 ```
 
-### /profile (acceso a recurso protegido)
+### `/profile` (acceso a recurso protegido)
 Ejecutar reemplazando `<jwt-token>` por el token devuelto `access_token`. En este caso no será necesario validar `csrf_token` ya que la acción realizada es `GET`.
 ```bash
 curl -X GET "http://localhost:8000/profile" \

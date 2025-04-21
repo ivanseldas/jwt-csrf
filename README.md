@@ -88,7 +88,7 @@ Ejemplo de respuesta:
 ### `/protegido` (verificación de JWT Token y CSRF Token)
 Ejecutar reemplazando `<jwt-token>` por el token devuelto `access_token` asi como `<csrf-token>` por `csrf_token` para validar ambos tokens.
 ```bash
-curl -X <POST/PUT/DELETE> "http://localhost:8000/<endpoint>" \
+curl -X POST "http://localhost:8000/protegido" \
 -H "Authorization: Bearer <jwt-token>" \
 -H "X-CSRF-Token: <csrf-token>"
 ```

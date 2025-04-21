@@ -14,6 +14,7 @@
 - Devuelve: ID, username y email del usuario  
 ---
 ### Estructura de carpetas
+```bash
 .
 ├── app/
 │   ├── main.py
@@ -24,6 +25,7 @@
 ├── .env.example       
 ├── requirements.txt
 └── README.md
+```
 ---
 ### Instalación
 ```bash

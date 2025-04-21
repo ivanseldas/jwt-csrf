@@ -20,12 +20,24 @@
 │   ├── main.py
 │   ├── security.py      # lógica JWT & CSRF
 │   ├── auth_router.py   # endpoints
-│   ├── schemas.py       # modelos pydantic
-│   └── database.py      # base de datos
-├── .env.example       
+│   ├── schemas.py       # modelos pydantic para validación de datos
+│   └── database.py      # base de datos de usuarios
+├── .env.example         # variables de entorno para claves y tiempos de expiración
 ├── requirements.txt
 └── README.md
 ```
+---
+# Proceso de Autenticación
+1. **Login**: 
+   - Valida credenciales → Genera JWT (user data + expiración) y CSRF token
+   - JWT se envía al cliente, CSRF token se envía al cliente y almacena en el servidor
+2. **Acceso Protegido**:
+   - Cliente envía JWT en header `Authorization: Bearer <token>`
+   - Para métodos **POST/PUT/DELETE**: añade header `X-CSRF-Token`
+3. **Validaciones**:
+   - JWT: Firma + expiración + datos usuario
+   - CSRF: Coincidencia con token almacenado + expiración
+4. **CSRF en GET**: no se requiere (solo lectura). GET `/profile` solo necesita validar el JWT.
 ---
 # Instalación y configuración
 ```bash

@@ -45,7 +45,7 @@ uvicorn main:app --reload
 ```
 ---
 # Endpoints
-### /login (autenticación con JWT token y CSRF token)
+### `/login` (autenticación con JWT token y CSRF token)
 Ejecutar con las credenciales de usuario `username`=`ivan` y `password`=`ivanpassword`. Devolverá un token JWT y otro CSRF.
 ```bash
 curl -X POST "http://localhost:8000/login" \
@@ -67,7 +67,7 @@ curl -X <POST/PUT/DELETE> "http://localhost:8000/<endpoint>" \
 -H "X-CSRF-Token: <csrf-token>"
 ```
 
-### /profile (acceso a recurso protegido)
+### `/profile` (acceso a recurso protegido)
 Ejecutar reemplazando `<jwt-token>` por el token devuelto `access_token`. En este caso no será necesario validar `csrf_token` ya que la acción realizada es `GET`.
 ```bash
 curl -X GET "http://localhost:8000/profile" \

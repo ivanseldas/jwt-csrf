@@ -1,4 +1,4 @@
-# MTP-prueba-tecnica
+# JWT & CSRF Token
 
 ### 1. Autenticación con JWT (JSON Web Token)
 - Endpoint `/login` valida credenciales y devuelve JWT  

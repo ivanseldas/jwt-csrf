@@ -53,7 +53,7 @@
      3. Usa `secrets.compare_digest()` para prevenir timing attacks
 4. **CSRF en GET**: no se requiere (solo lectura). GET `/profile` solo necesita validar el JWT.
 ---
-# Prerequisitos
+# Prerrequisitos
    - Python 3.11
    - Pip (gestor de paquetes)
    - Entorno virtual (recomendado)  

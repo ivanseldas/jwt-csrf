@@ -12,7 +12,18 @@
 ### 3. Endpoint de Ejemplo `/profile`
 - **GET** seguro con validación JWT (no requiere CSRF)
 - Devuelve: ID, username y email del usuario  
-
+---
+### Estructura de carpetas
+.
+├── app/
+│   ├── main.py
+│   ├── security.py      # lógica JWT & CSRF
+│   ├── routers.py       # endpoints
+│   ├── schemas.py       # modelos pydantic
+│   └── database.py      # base de datos
+├── .env.example       
+├── requirements.txt
+└── README.md
 ---
 ### Instalación
 ```bash
@@ -31,7 +42,7 @@ cp .env.example .env
 cd app
 uvicorn main:app --reload
 ```
-
+---
 ### /login Endpoint (autenticación con JWT token y CSRF token)
 Ejecutar con las credenciales de usuario `username`=`ivan` y `password`=`ivanpassword`. Devolverá un token JWT y otro CSRF.
 ```bash

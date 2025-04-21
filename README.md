@@ -27,16 +27,30 @@
 └── README.md
 ```
 ---
-# Proceso de Autenticación
-1. **Login**: 
-   - Valida credenciales → Genera JWT (user data + expiración) y CSRF token
-   - JWT se envía al cliente, CSRF token se envía al cliente y almacena en el servidor
-2. **Acceso Protegido**:
-   - Cliente envía JWT en header `Authorization: Bearer <token>`
-   - Para métodos **POST/PUT/DELETE**: añade header `X-CSRF-Token`
-3. **Validaciones**:
-   - JWT: Firma + expiración + datos usuario
-   - CSRF: Coincidencia con token almacenado + expiración
+# Proceso de autenticación
+1. **Login**  
+   - El cliente envía credenciales `username` & `password` 
+   - Si son válidas:  
+     - **Genera JWT**: token firmado con datos del usuario `id`, `email` y tiempo de expiración
+     - **Genera CSRF Token** 
+     - **Almacenamiento**: guarda el CSRF token en el servidor asociado al usuario 
+     - **Respuesta**: devuelve ambos tokens al cliente `JWT` & `CSRF`
+
+2. **Acceso a recursos protegidos**  
+   - **Para todos los ndpoints**:  
+     - El cliente envía un JWT en el header `Authorization: Bearer <token>`.  
+   - **Para métodos POST/PUT/DELETE**:  
+     - El cliente añade header `X-CSRF-Token` con el CSRF recibido.  
+
+3. **Validaciones**  
+   - **JWT**:  
+     1. Verifica la firma secreta con `SECRET_KEY`
+     2. Verifica la fecha expiración 
+     3. Obtiene los datos del usuario `id`, `email`  
+   - **CSRF** (solo en métodos POST/PUT/DELETE):  
+     1. Compara el token recibido con el almacenado
+     2. Verifica la fecha expiración
+     3. Usa `secrets.compare_digest()` para prevenir timing attacks
 4. **CSRF en GET**: no se requiere (solo lectura). GET `/profile` solo necesita validar el JWT.
 ---
 # Instalación y configuración
